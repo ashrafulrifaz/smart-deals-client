@@ -153,12 +153,12 @@ const Register = () => {
                 onClick={handleGoogleLogin}
                 className='w-full flex items-center justify-center gap-3 border border-gray-300 py-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 cursor-pointer'
                 >
-                <img
-                    src='https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg'
-                    alt='Google'
-                    className='w-5 h-5'
-                />
-                <span className='font-medium text-gray-700'>Sign Up With Google</span>
+                    <img
+                        src='https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg'
+                        alt='Google'
+                        className='w-5 h-5'
+                    />
+                    <span className='font-medium text-gray-700'>Sign Up With Google</span>
                 </button>
 
             </div>

@@ -11,6 +11,8 @@ import Login from './pages/Login'
 import AuthProvider from './context/AuthProvider'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import AllProducts from './pages/AllProducts'
+import CreateProduct from './pages/CreateProduct'
+import ProductDetail from './pages/ProductDetail'
 
 const queryClient = new QueryClient()
 
@@ -24,6 +26,8 @@ const router = createBrowserRouter([
       { path: '/register', Component: Register },
       { path: '/login', Component: Login },
       { path: '/products', Component: AllProducts },
+      { path: '/products/:id', Component: ProductDetail },
+      { path: '/create-product', Component: CreateProduct },
     ]
   }
 ])
