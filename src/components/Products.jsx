@@ -1,7 +1,6 @@
 import useProducts from "../hooks/useProducts";
 import ProductCard from "./SmallComp/ProductCard";
 
-
 const Products = () => {
     const {data: products} = useProducts()
     
