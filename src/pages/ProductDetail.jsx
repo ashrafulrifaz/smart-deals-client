@@ -26,8 +26,20 @@ const ProductDetail = () => {
         status: 'Pending',
         postedAt: new Date(),
         }
-        console.log(bid)
-        // fetch post request here
+        
+        fetch('http://localhost:3000/bids', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(bid)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.acknowledged) {
+                    alert('success')
+                }
+            })
         reset()
         setIsModalOpen(false)
     }
