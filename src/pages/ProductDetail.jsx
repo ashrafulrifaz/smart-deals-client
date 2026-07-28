@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom"
 import useProducts from "../hooks/useProducts"
-import { use, useState } from "react"
+import { use, useEffect, useState } from "react"
 import { AuthContext } from "../context/AuthContext"
 import { useForm } from "react-hook-form"
 
@@ -9,8 +9,15 @@ const ProductDetail = () => {
     const {user} = use(AuthContext)
     const { data: products } = useProducts()
     const product = products?.find(p => p._id === id)
+    const [bids, setBids] = useState([])
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const { register, handleSubmit, reset, formState: { errors } } = useForm()
+    const { register, handleSubmit, reset } = useForm()
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/bids/byProduct/${id}`)
+            .then(res => res.json())
+            .then(data => setBids(data))
+    }, [id])
 
     const onSubmit = async (data) => {
         const bid = {
@@ -38,6 +45,9 @@ const ProductDetail = () => {
             .then(data => {
                 if(data.acknowledged) {
                     alert('success')
+                    bid._id = data.insertedId
+                    const newBid = [...bids, bid]
+                    setBids(newBid)
                 }
             })
         reset()
@@ -255,6 +265,45 @@ const ProductDetail = () => {
 
                         </div>
 
+                    </div>
+                </div>
+
+                <div className="mt-10">
+                    <h2 className="capitalize font-semibold text-3xl">Bids for this product: <span className="bg-linear-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent">{bids?.length}</span></h2>
+                    <div className="mt-10 rounded-lg bg-white">
+                        <table border="1" cellpadding="10" cellspacing="0" className="w-full border border-[#e9e9e9] text-left">
+                            <thead className="border-b border-[#e9e9e9] bg-gray-50">
+                                <tr>
+                                    <th className="font-medium text-[#001931] px-4 py-2">SL No</th>
+                                    <th className="font-medium text-[#001931] px-4 py-2">Seller</th>
+                                    <th className="font-medium text-[#001931] px-4 py-2">Bid Price</th>
+                                    <th className="font-medium text-[#001931] px-4 py-2">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    bids?.map((bid, idx) => (
+                                        <tr key={idx} className="border-b border-[#e9e9e9]">
+                                            <th className="font-medium text-[#001931] px-4 py-2">{idx + 1}</th>
+                                            <th className="font-medium text-[#001931] px-4 py-2 flex items-center gap-3">
+                                                <img src={bid.buyer.imageURL} alt="buyer image" className="w-8 h-8 rounded-full" />
+                                                <div>
+                                                    <h5 className="text-sm text-[#001931] font-medium">{bid.buyer.name}</h5>
+                                                    <h6 className="text-sm text-[#001931] font-regular">{bid.buyer.email}</h6>
+                                                </div>
+                                            </th>
+                                            <th className="font-medium text-[#001931] px-4 py-2">${bid?.offeredPrice}</th>
+                                            <th className="px-4 py-2">
+                                                <div className=" flex gap-3 items-center">
+                                                    <button className="text-[#4CAF50] border border-[#4CAF50] rounded-md py-1 px-2 text-sm font-medium cursor-pointer">Accept Offer</button>
+                                                    <button className="text-[#FF3D00] border border-[#FF3D00] rounded-md py-1 px-2 text-sm font-medium cursor-pointer">Reject Offer</button>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

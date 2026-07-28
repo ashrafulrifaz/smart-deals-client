@@ -13,6 +13,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import AllProducts from './pages/AllProducts'
 import CreateProduct from './pages/CreateProduct'
 import ProductDetail from './pages/ProductDetail'
+import MyBids from './pages/MyBids'
 
 const queryClient = new QueryClient()
 
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { path: '/products', Component: AllProducts },
       { path: '/products/:id', Component: ProductDetail },
       { path: '/create-product', Component: CreateProduct },
+      { path: '/my-bids', Component: MyBids },
     ]
   }
 ])
