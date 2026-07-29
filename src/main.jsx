@@ -15,6 +15,7 @@ import CreateProduct from './pages/CreateProduct'
 import ProductDetail from './pages/ProductDetail'
 import MyBids from './pages/MyBids'
 import MyProducts from './pages/MyProducts'
+import PrivateRoutes from './routes/PrivateRoutes'
 
 const queryClient = new QueryClient()
 
@@ -29,9 +30,9 @@ const router = createBrowserRouter([
       { path: '/login', Component: Login },
       { path: '/products', Component: AllProducts },
       { path: '/products/:id', Component: ProductDetail },
-      { path: '/create-product', Component: CreateProduct },
-      { path: '/my-bids', Component: MyBids },
-      { path: '/my-products', Component: MyProducts },
+      { path: '/create-product', element: <PrivateRoutes><CreateProduct /></PrivateRoutes> },
+      { path: '/my-bids', element: <PrivateRoutes><MyBids /></PrivateRoutes> },
+      { path: '/my-products', element: <PrivateRoutes><MyProducts /></PrivateRoutes> },
     ]
   }
 ])
