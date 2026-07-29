@@ -14,6 +14,7 @@ import AllProducts from './pages/AllProducts'
 import CreateProduct from './pages/CreateProduct'
 import ProductDetail from './pages/ProductDetail'
 import MyBids from './pages/MyBids'
+import MyProducts from './pages/MyProducts'
 
 const queryClient = new QueryClient()
 
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
       { path: '/products/:id', Component: ProductDetail },
       { path: '/create-product', Component: CreateProduct },
       { path: '/my-bids', Component: MyBids },
+      { path: '/my-products', Component: MyProducts },
     ]
   }
 ])
