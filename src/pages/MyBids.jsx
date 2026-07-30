@@ -1,9 +1,12 @@
+import { use } from "react";
 import useBids from "../hooks/useBids";
 import useProducts from "../hooks/useProducts";
+import { AuthContext } from "../context/AuthContext";
 
 const MyBids = () => {
-    const {data: bids, refetch} = useBids()
+    const {data: bids = [], refetch} = useBids()
     const { data: products = [] } = useProducts();
+    const {user} = use(AuthContext)
 
     const productMap = Object.fromEntries(
         products.map(product => [product._id, product])

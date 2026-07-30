@@ -8,7 +8,7 @@ const PrivateRoutes = ({children}) => {
     const location = useLocation()
 
     if(loading) {
-        <h4 className="text-3xl font-semibold mt-10 text-center">loading.....</h4>
+        return <h4 className="text-3xl font-semibold my-10 text-center">loading.....</h4>
     }
 
     if(user) {

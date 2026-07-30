@@ -15,7 +15,7 @@ function Navbar() {
   return (
     <div className='grid grid-cols-4 gap-4 items-center px-20 py-3 bg-white'>
       <div>
-        <h3 className='text-2xl font-bold'>Smart<span className='bg-linear-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent'>Deals</span></h3>
+        <Link to={'/'} className='text-2xl font-bold'>Smart<span className='bg-linear-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent'>Deals</span></Link>
       </div>
       <nav className='flex justify-center items-center gap-5 col-span-2'>
         <NavLink to="/" className={`${pathname === '/' ? 'text-[#9F62F2]' : 'text-black'}`}>Home</NavLink>

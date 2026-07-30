@@ -6,7 +6,6 @@ const MyProducts = () => {
     const { data: products = [] } = useProducts();
     const {user} = use(AuthContext)
     const myProducts = products?.filter(product => product?.seller?.email == user?.email)
-    console.log(myProducts)
 
     return (
         <div className="py-16 px-20">
